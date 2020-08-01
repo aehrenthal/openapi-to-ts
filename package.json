@@ -1,0 +1,30 @@
+{
+  "name": "openapi-to-ts",
+  "description": "Generate TypeScript interfaces from OpenAPI 3.0 specs",
+  "version": "1.0.0",
+  "keywords": [
+    "typescript",
+    "ts",
+    "openapi",
+    "swagger",
+    "schema"
+  ],
+  "homepage": "https://github.com/aehrenthal/openapi-to-ts",
+  "bugs": "https://github.com/aehrenthal/openapi-to-ts/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aehrenthal/openapi-to-ts.git"
+  },
+  "author": "alexanderehrenthal@gmail.com",
+  "license": "MIT",
+  "bin": {
+    "openapi-to-ts": "bin/openapi-to-ts.js"
+  },
+  "scripts": {},
+  "dependencies": {
+    "commander": "^6.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.9.7"
+  }
+}
