@@ -1,6 +1,6 @@
 {
   "name": "openapi-to-ts",
-  "description": "Generate TypeScript interfaces from OpenAPI 3.0 specs",
+  "description": "Generate TypeScript types from OpenAPI 3.0 specs.",
   "version": "1.0.0",
   "keywords": [
     "typescript",
