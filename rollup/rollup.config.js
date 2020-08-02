@@ -7,7 +7,7 @@ const path = require('path');
 
 const packageJson = require(path.resolve(process.cwd(), './package.json'));
 
-const name = 'OpenAPIToTs';
+const name = 'OpenAPIToTS';
 
 export default {
   input: path.resolve(process.cwd(), './src/index.ts'),

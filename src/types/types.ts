@@ -3,7 +3,7 @@
  * openapi-to-ts package accepts to generate
  * TypeScript types based on OpenAPI files.
  */
-export interface IOpenAPIToTsOptions {
+export interface IOpenAPIToTSOptions {
   /**
    * Specifies the OpenAPI 3.0 specification file
    * which should be converted to TypeScript types.

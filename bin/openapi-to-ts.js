@@ -4,7 +4,7 @@
 
 var program = require('commander');
 var packageJson = require('../package.json');
-var openAPIToTs = require('../dist');
+var openAPIToTS = require('../dist');
 
 program
   .version(packageJson.version, '-v, --version', 'Output the package version number.')
@@ -16,6 +16,6 @@ program.parse(process.argv);
 
 const {input, output} = program;
 
-openAPIToTs.convertOpenApiToTs(input, output);
+openAPIToTS.convertOpenApiToTS(input, output);
 
 process.exit(0);
