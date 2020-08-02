@@ -1,6 +1,6 @@
 import {IOpenAPIToTSOptions} from './types';
 
-export const convertOpenApiToTS = ({input, output}: IOpenAPIToTSOptions) => {
+export const convertOpenAPIToTS = ({input, output}: IOpenAPIToTSOptions) => {
   console.log(input);
   console.log(output);
 };

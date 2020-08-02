@@ -16,6 +16,6 @@ program.parse(process.argv);
 
 const {input, output} = program;
 
-openAPIToTS.convertOpenApiToTS(input, output);
+openAPIToTS.convertOpenAPIToTS(input, output);
 
 process.exit(0);
