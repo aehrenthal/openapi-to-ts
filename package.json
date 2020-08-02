@@ -17,23 +17,34 @@
   },
   "author": "alexanderehrenthal@gmail.com",
   "license": "MIT",
-  "main": "./bin/openapi-to-ts.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.es.js",
+  "files": [
+    "dist"
+  ],
   "bin": {
     "openapi-to-ts": "./bin/openapi-to-ts.js"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "rollup -c ./rollup/rollup.config.js"
+  },
   "dependencies": {
     "commander": "^6.0.0"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
     "@typescript-eslint/eslint-plugin": "^3.7.1",
     "@typescript-eslint/parser": "^3.7.1",
-    "eslint": "^7.6.0",
-    "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "eslint": "^7.6.0",
     "prettier": "^2.0.5",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "rollup": "^2.23.0",
     "typescript": "^3.9.7"
   }
 }

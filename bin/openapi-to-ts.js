@@ -4,7 +4,7 @@
 
 var program = require('commander');
 var packageJson = require('../package.json');
-var openAPIToTs = require('../src/index');
+var openAPIToTs = require('../dist');
 
 program
   .version(packageJson.version, '-v, --version', 'Output the package version number.')
