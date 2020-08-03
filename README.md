@@ -4,7 +4,7 @@ TypeScript type generator for OpenAPI 3.0 specification files.
 
 ## Warning
 
-This package is still in its Alpha version. It has not been tested yet and it still misses essential features, such as:
+This package is still in its alpha version. It has not been tested yet and it still misses essential features, such as:
 
 - allOf
 - anyOf
