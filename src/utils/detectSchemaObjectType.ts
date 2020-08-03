@@ -5,6 +5,7 @@ import {IOpenAPISchemaObject, SchemaObjectType} from '../types';
  * util methods can then approriately construct types in their unique
  * ways. For example, Array's are constructed in a different way
  * than anyOf, oneOf or ref's.
+ * @param schemaObject the schema object for which the type to detect.
  */
 export const detectSchemaObjectType = (
   schemaObject: IOpenAPISchemaObject | undefined

@@ -1,10 +1,10 @@
 /**
- * A small util method to capitalize the first letter of a string.
- * @param value the string that should be capitalized.
+ * A small util method to capitalize the first letter of a text.
+ * @param text the text that should be capitalized.
  */
-export const capitalizeFirstLetter = (value: string): string => {
-  if (typeof value !== 'string') {
+export const capitalizeFirstLetter = (text: string): string => {
+  if (typeof text !== 'string') {
     return '';
   }
-  return value.charAt(0).toUpperCase() + value.slice(1);
+  return text.charAt(0).toUpperCase() + text.slice(1);
 };
