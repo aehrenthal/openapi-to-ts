@@ -11,10 +11,46 @@ export interface IOpenAPIToTSOptions {}
  */
 
 /**
- * The data type of a schema is defined by the type keyword, for example, type: string.
+ * The format type of a schema is defined by the `format` keyword, for example, format: byte.
+ * This type defines all format types OpenAPI 3.0 allows.
+ */
+export type OpenAPIDataFormats =
+  | 'float'
+  | 'double'
+  | 'int32'
+  | 'int64'
+  | 'date'
+  | 'date-time'
+  | 'password'
+  | 'byte'
+  | 'binary'
+  | 'email'
+  | 'uuid'
+  | 'uri'
+  | 'hostname'
+  | 'ipv4'
+  | 'ipv6';
+
+/**
+ * The data type of a schema is defined by the `type` keyword, for example, type: string.
  * This type defines all data types OpenAPI 3.0 allows.
  */
-export type OpenAPIDataTypes = 'string' | 'number' | 'integer' | 'boolean' | 'array' | 'object';
+export type OpenAPIDataTypes = 'array' | 'string' | 'number' | 'integer' | 'boolean' | 'object';
+
+/**
+ * Each of the belows types are constructed differently by openapi-to-ts. This
+ * type helps us to differentiate each of them and construct switch statements.
+ */
+export type SchemaObjectType =
+  | 'ref'
+  | 'anyOf'
+  | 'oneOf'
+  | 'enum'
+  | 'array'
+  | 'string'
+  | 'number'
+  | 'boolean'
+  | 'object';
 
 /**
  * This type represents a reference to another schema
@@ -33,8 +69,10 @@ export interface IOpenAPIReferenceObject {
 export interface IOpenAPISchemaObject {
   additionalProperties?: IOpenAPIReferenceObject | IOpenAPISchemaObject | boolean;
   allOf?: Array<IOpenAPIReferenceObject | IOpenAPISchemaObject>;
+  anyOf?: Array<IOpenAPIReferenceObject | IOpenAPISchemaObject>;
   description?: string;
   enum?: string[];
+  format?: OpenAPIDataFormats;
   items?: IOpenAPIReferenceObject | IOpenAPISchemaObject;
   nullable?: boolean;
   oneOf?: Array<IOpenAPIReferenceObject | IOpenAPISchemaObject>;
@@ -43,7 +81,7 @@ export interface IOpenAPISchemaObject {
   };
   required?: string[];
   title?: string;
-  type?: IOpenAPIReferenceObject;
+  type?: OpenAPIDataTypes;
   [key: string]: any;
 }
 

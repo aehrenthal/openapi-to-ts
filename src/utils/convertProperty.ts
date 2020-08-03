@@ -1,4 +1,6 @@
-import {IOpenAPISchemaObject} from '../types';
+import {IOpenAPISchemaObject, SchemaObjectType} from '../types';
+import {convertName} from './convertName';
+import {detectSchemaObjectType} from './detectSchemaObjectType';
 
 /**
  * Converts an OpenAPI 3.0 property to a TypeScript property.
@@ -17,13 +19,31 @@ export const convertProperty = (
   generatedProperty += name;
 
   /** Step 2: Conditionally mark the property as optional with `?`. */
-  if (requiredProperties && requiredProperties.includes(name)) generatedProperty += '?';
+  if (!requiredProperties || !requiredProperties.includes(name)) generatedProperty += '?';
 
   /** Step 3: Append the appropriate separator between the key and the type. */
   generatedProperty += ': ';
 
   /** Step 4: Add the proper type to the property. */
-  generatedProperty += schemaObject.type;
+  const schemaObjectType: SchemaObjectType | undefined = detectSchemaObjectType(schemaObject);
+  switch (schemaObjectType) {
+    case 'ref':
+      generatedProperty += convertName(schemaObject.$ref);
+      break;
+    case 'anyOf':
+    case 'oneOf':
+    case 'enum':
+    case 'array':
+    case 'string':
+    case 'number':
+    case 'boolean':
+      generatedProperty += schemaObjectType;
+      break;
+    case 'object':
+    default:
+      generatedProperty += schemaObject.type;
+      break;
+  }
 
   /** Step 5: Conditionally mark the property as nullable. */
   if (schemaObject.nullable) generatedProperty += ' | null';

@@ -14,20 +14,18 @@ export const generateTSInterface = (name: string, schemaObject: IOpenAPISchemaOb
   /** Step 1: Generate the JSDoc comment above the interface being declared. */
   if (schemaObject.description) generatedInterface += convertComment(schemaObject.description);
 
-  /** Step 2: Generate the export and name of the interface.  */
+  /** Step 2: Generate the export and name of the interface. */
   generatedInterface += `export interface ${convertName(name)} {\n`;
 
   /** Step 3: Generate the properties of the interface. */
   if (schemaObject.properties) {
     for (const [key, value] of Object.entries(schemaObject.properties)) {
-      if (!value.$ref) {
-        /** Add two spaces before each property. */
-        generatedInterface += '  ';
-        /** Generate the actual TypeScript property. */
-        generatedInterface += convertProperty(key, value, schemaObject.required);
-        /** Add a new line after each property. */
-        generatedInterface += '\n';
-      }
+      /** Add two spaces before each property. */
+      generatedInterface += '  ';
+      /** Generate the actual TypeScript property. */
+      generatedInterface += convertProperty(key, value, schemaObject.required);
+      /** Add a new line after each property. */
+      generatedInterface += '\n';
     }
   }
 

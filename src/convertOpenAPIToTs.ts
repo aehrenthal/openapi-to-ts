@@ -16,8 +16,6 @@ export const convertOpenAPIToTS = (specFile: IOpenAPISpecFile, _options?: IOpenA
   /** Map through all schemas and generate the proper interfaces. */
   let types: string = '';
   for (const [key, value] of Object.entries(specFile.components.schemas)) {
-    if (value.$ref) return;
-
     types += generateTSInterface(key, value);
   }
 
