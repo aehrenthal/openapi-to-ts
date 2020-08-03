@@ -155,4 +155,4 @@ components:
           type: integer
           format: int32
         message:
-          type: string
+          $ref: '#/components/schemas/NewPet'

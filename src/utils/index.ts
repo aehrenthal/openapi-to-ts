@@ -10,3 +10,5 @@ export * from './generateTSProperties';
 export * from './generateTSProperty';
 export * from './getLocalFile';
 export * from './getRemoteFile';
+export * from './getSchemaNameFromRef';
+export * from './isReferenceObject';

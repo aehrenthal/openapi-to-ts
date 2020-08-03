@@ -12,7 +12,7 @@ export const detectSchemaObjectType = (
 ): SchemaObjectType | undefined => {
   if (!schemaObject) return undefined;
 
-  if (schemaObject.$ref) return 'ref';
+  if (schemaObject['$ref']) return 'ref';
 
   if (Array.isArray(schemaObject.anyOf)) return 'anyOf';
 

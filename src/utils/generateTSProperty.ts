@@ -1,5 +1,7 @@
-import {IOpenAPISchemaObject, ITypeScriptProperty} from '../types';
+import {IOpenAPISchemaObject, ITypeScriptProperty, SchemaObjectType} from '../types';
+import {convertName} from './convertName';
 import {detectSchemaObjectType} from './detectSchemaObjectType';
+import {getSchemaNameFromRef} from './getSchemaNameFromRef';
 
 /**
  * Converts a OpenAPI 3.0 property to TypeScript property object.
@@ -12,10 +14,33 @@ export const generateTSProperty = (
   schemaObject: IOpenAPISchemaObject,
   requiredProperties?: string[]
 ): ITypeScriptProperty => {
-  return {
+  let generatedProperty: ITypeScriptProperty = {
     name,
     nullable: schemaObject.nullable || false,
     optional: !requiredProperties || !requiredProperties.includes(name),
-    type: detectSchemaObjectType(schemaObject) as string
+    type: ''
   };
+
+  const schemaObjectType: SchemaObjectType | undefined = detectSchemaObjectType(schemaObject);
+
+  switch (schemaObjectType) {
+    case 'ref':
+      generatedProperty.type += convertName(getSchemaNameFromRef(schemaObject.$ref));
+      break;
+    case 'anyOf':
+    case 'oneOf':
+    case 'enum':
+    case 'array':
+    case 'string':
+    case 'number':
+    case 'boolean':
+      generatedProperty.type += schemaObjectType;
+      break;
+    case 'object':
+    default:
+      generatedProperty.type += schemaObject.type;
+      break;
+  }
+
+  return generatedProperty;
 };
