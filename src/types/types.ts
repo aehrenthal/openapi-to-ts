@@ -20,10 +20,9 @@ export type OpenAPIDataTypes = 'string' | 'number' | 'integer' | 'boolean' | 'ar
  * This type represents a reference to another schema
  * defined in the OpenAPI file.
  */
-export type OpenAPISchemaReference =
-  | {$ref: string}
-  | {anyOf: (IOpenAPISchemaObject | OpenAPISchemaReference)[]}
-  | {oneOf: (IOpenAPISchemaObject | OpenAPISchemaReference)[]};
+export interface IOpenAPIReferenceObject {
+  $ref?: string;
+}
 
 /**
  * This interface represents an OpenAPI schema object.
@@ -32,19 +31,19 @@ export type OpenAPISchemaReference =
  * types are described using a schema object.
  */
 export interface IOpenAPISchemaObject {
-  additionalProperties?: OpenAPISchemaReference | IOpenAPISchemaObject | boolean;
-  allOf?: Array<OpenAPISchemaReference | IOpenAPISchemaObject>;
+  additionalProperties?: IOpenAPIReferenceObject | IOpenAPISchemaObject | boolean;
+  allOf?: Array<IOpenAPIReferenceObject | IOpenAPISchemaObject>;
   description?: string;
   enum?: string[];
-  items?: OpenAPISchemaReference | IOpenAPISchemaObject;
+  items?: IOpenAPIReferenceObject | IOpenAPISchemaObject;
   nullable?: boolean;
-  oneOf?: Array<OpenAPISchemaReference | IOpenAPISchemaObject>;
+  oneOf?: Array<IOpenAPIReferenceObject | IOpenAPISchemaObject>;
   properties?: {
-    [key: string]: OpenAPISchemaReference | IOpenAPISchemaObject;
+    [key: string]: IOpenAPIReferenceObject | IOpenAPISchemaObject;
   };
   required?: string[];
   title?: string;
-  type?: OpenAPISchemaReference;
+  type?: IOpenAPIReferenceObject;
   [key: string]: any;
 }
 
@@ -55,7 +54,7 @@ export interface IOpenAPISchemaObject {
 export interface IOpenAPISpecFile {
   openapi: string;
   info: {
-    title: string;
+    title?: string;
     description?: string;
     termsOfService?: string;
     contact?: {
@@ -64,14 +63,14 @@ export interface IOpenAPISpecFile {
       email?: string;
     };
     license?: {
-      name: string;
+      name?: string;
       url?: string;
     };
-    version: string;
+    version?: string;
   };
-  components: {
-    schemas: {
-      [key: string]: OpenAPISchemaReference | IOpenAPISchemaObject;
+  components?: {
+    schemas?: {
+      [key: string]: IOpenAPIReferenceObject | IOpenAPISchemaObject;
     };
   };
 }

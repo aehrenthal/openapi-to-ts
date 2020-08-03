@@ -14,8 +14,8 @@ program
     try {
       /** Fetch the file and convert it to JSON. */
       const specFile = await openAPIToTS.getOpenAPISpecAsJSON(options.input);
-      console.log(specFile);
       /** Convert the OpenAPI 3.0 Spec to TypeScript types. */
+      console.log(openAPIToTS.convertOpenAPIToTS(specFile, options));
       openAPIToTS.convertOpenAPIToTS(specFile, options);
     } catch (error) {
       console.log(chalk.red(error));

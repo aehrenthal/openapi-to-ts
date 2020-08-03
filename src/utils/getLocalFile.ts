@@ -5,7 +5,7 @@ import fs from 'fs';
  * on the file system of the user.
  * @param filePath the path of the file.
  */
-export function getLocalFile(filePath: string): Promise<string> {
+export const getLocalFile = (filePath: string): Promise<string> => {
   return new Promise((resolve, reject) => {
     fs.readFile(filePath, {encoding: 'utf-8'}, (error, data) => {
       if (error) {
@@ -14,4 +14,4 @@ export function getLocalFile(filePath: string): Promise<string> {
       resolve(data);
     });
   });
-}
+};

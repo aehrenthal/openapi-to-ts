@@ -6,7 +6,7 @@ import https from 'https';
  * on a remote server.
  * @param filePath the path of the file.
  */
-export function getRemoteFile(filePath: string): Promise<string> {
+export const getRemoteFile = (filePath: string): Promise<string> => {
   return new Promise(async (resolve, reject) => {
     /**
      * We need to choose a different HTTP client depending
@@ -39,4 +39,4 @@ export function getRemoteFile(filePath: string): Promise<string> {
         reject(`Cannot load the file located at: ${filePath}`);
       });
   });
-}
+};

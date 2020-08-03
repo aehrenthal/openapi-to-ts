@@ -13,7 +13,7 @@ const isRemoteFile: RegExp = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~
  * server or on the local file system of the user.
  * @param filePath the path to the OpenAPI 3.0 specification file to convert.
  */
-export async function getOpenAPISpecAsJSON(filePath: string): Promise<IOpenAPISpecFile> {
+export const getOpenAPISpecAsJSON = async (filePath: string): Promise<IOpenAPISpecFile> => {
   console.log(chalk.blue(`Loading OpenAPI 3.0 specification file from: ${filePath}`));
 
   try {
@@ -39,4 +39,4 @@ export async function getOpenAPISpecAsJSON(filePath: string): Promise<IOpenAPISp
   } catch (error) {
     throw new Error(error);
   }
-}
+};
