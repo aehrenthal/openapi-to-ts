@@ -13,18 +13,21 @@ export default {
   input: path.resolve(process.cwd(), './src/index.ts'),
   output: [
     {
+      exports: 'named',
       file: packageJson.main,
       format: 'cjs',
       name,
       sourcemap: true
     },
     {
+      exports: 'named',
       file: packageJson.module,
       format: 'esm',
       name,
       sourcemap: true
     }
   ],
+  external: ['fs', 'os', 'tty'],
   plugins: [
     typescript({
       clean: true,
