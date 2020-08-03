@@ -27,7 +27,7 @@ export default {
       sourcemap: true
     }
   ],
-  external: ['fs', 'os', 'tty'],
+  external: ['fs', 'os', 'tty', 'http', 'https'],
   plugins: [
     typescript({
       clean: true,
