@@ -155,4 +155,12 @@ components:
           type: integer
           format: int32
         message:
-          $ref: '#/components/schemas/NewPet'
+          type: string
+        products:
+          type: array
+          items:
+            type: string
+        pets:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewPet'
