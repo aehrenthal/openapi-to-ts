@@ -4,6 +4,6 @@
  */
 export const toJSDocComment = (text: string): string => {
   return `/**
-  * ${text.trim().replace('\n+$', '').replace(/\n/g, '\n  * ')}
-  */`;
+ * ${text.trim().replace('\n+$', '').replace(/\n/g, '\n  * ')}
+ */\n`;
 };
