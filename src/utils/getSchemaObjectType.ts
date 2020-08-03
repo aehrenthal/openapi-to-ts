@@ -7,12 +7,12 @@ import {IOpenAPISchemaObject, SchemaObjectType} from '../types';
  * than anyOf, oneOf or ref's.
  * @param schemaObject the schema object for which the type to detect.
  */
-export const detectSchemaObjectType = (
-  schemaObject: IOpenAPISchemaObject | undefined
-): SchemaObjectType | undefined => {
+export const getSchemaObjectType = (schemaObject: IOpenAPISchemaObject | undefined): SchemaObjectType | undefined => {
   if (!schemaObject) return undefined;
 
-  if (schemaObject['$ref']) return 'ref';
+  if (schemaObject.$ref) return 'ref';
+
+  if (Array.isArray(schemaObject.allOf)) return 'allOf';
 
   if (Array.isArray(schemaObject.anyOf)) return 'anyOf';
 

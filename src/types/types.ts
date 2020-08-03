@@ -43,6 +43,7 @@ export type OpenAPIDataTypes = 'array' | 'string' | 'number' | 'integer' | 'bool
  */
 export type SchemaObjectType =
   | 'ref'
+  | 'allOf'
   | 'anyOf'
   | 'oneOf'
   | 'enum'

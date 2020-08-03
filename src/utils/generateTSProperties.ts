@@ -1,8 +1,6 @@
-import {IOpenAPISchemaObject, ITypeScriptProperty} from '../types';
+import {IOpenAPIReferenceObject, IOpenAPISchemaObject, ITypeScriptProperty} from '../types';
 import {generateTSProperty} from './generateTSProperty';
-import {getSchemaNameFromRef} from './getSchemaNameFromRef';
 import {isReferenceObject} from './isReferenceObject';
-import {toCamelCase} from './toCamelCase';
 
 /**
  * Converts all OpenAPI 3.0 properties to TypeScript property objects.
@@ -11,18 +9,30 @@ import {toCamelCase} from './toCamelCase';
 export const generateTSProperties = (schemaObject: IOpenAPISchemaObject): ITypeScriptProperty[] => {
   let generatedProperties: ITypeScriptProperty[] = [];
 
+  /**
+   * Here we handle the various places where OpenAPI 3.0 properties can be defined in.
+   * These range from schema.properties and schema.allOf to schema.oneOf and more.
+   */
+
   if (schemaObject.properties) {
     for (const [key, value] of Object.entries(schemaObject.properties)) {
-      /**
-       * $ref is not declared with a name itself. We need to get the name from the $ref value itself.
-       * For example, the name for $ref: `#/components/schemas/NewPet` would become `newPet`.
-       */
-      const propertyName: string = isReferenceObject(value) ? toCamelCase(getSchemaNameFromRef(value.$ref)) : key;
-      generatedProperties.push(generateTSProperty(propertyName, value, schemaObject.required));
+      generatedProperties.push(generateTSProperty(value, schemaObject.required, key));
     }
   }
 
-  // TODO: Handle allOf, oneOf etc.
+  if (schemaObject.allOf || schemaObject.anyOf || schemaObject.oneOf) {
+    (schemaObject.allOf || schemaObject.anyOf || schemaObject.oneOf || []).map(
+      (nestedSchemaObject: IOpenAPISchemaObject | IOpenAPIReferenceObject) => {
+        if (isReferenceObject(nestedSchemaObject)) {
+          generatedProperties.push(generateTSProperty(nestedSchemaObject, schemaObject.required));
+        } else {
+          generatedProperties.push(
+            generateTSProperty(nestedSchemaObject, schemaObject.required, nestedSchemaObject.title)
+          );
+        }
+      }
+    );
+  }
 
   return generatedProperties;
 };
