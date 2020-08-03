@@ -1,3 +1,4 @@
+import {getSchemaNameFromRef} from './getSchemaNameFromRef';
 import {toInterfaceName} from './toInterfaceName';
 
 /**
@@ -7,5 +8,5 @@ import {toInterfaceName} from './toInterfaceName';
  */
 export const getInterfaceNameFromRef = (ref: string | undefined): string => {
   if (!ref) return '';
-  return toInterfaceName(ref.slice(ref.lastIndexOf('/') + 1));
+  return toInterfaceName(getSchemaNameFromRef(ref));
 };

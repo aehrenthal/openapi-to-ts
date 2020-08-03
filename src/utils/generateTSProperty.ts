@@ -1,5 +1,5 @@
 import {IOpenAPIReferenceObject, IOpenAPISchemaObject, ITypeScriptProperty} from '../types';
-import {getInterfaceNameFromRef} from './getInterfaceNameFromRef';
+import {getSchemaNameFromRef} from './getSchemaNameFromRef';
 import {isReferenceObject} from './isReferenceObject';
 import {mapSchemaObjectToTypeScriptType} from './mapSchemaObjectToTypeScriptType';
 import {toCamelCase} from './toCamelCase';
@@ -37,7 +37,7 @@ export function generateTSProperty(
   let generatedProperty: ITypeScriptProperty;
 
   if (isReferenceObject(schemaObject)) {
-    const propertyName = toCamelCase(getInterfaceNameFromRef(schemaObject.$ref));
+    const propertyName = toCamelCase(getSchemaNameFromRef(schemaObject.$ref));
     generatedProperty = {
       name: propertyName,
       nullable: false,
