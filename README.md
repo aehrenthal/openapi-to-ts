@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  TypeScript type generator for OpenAPI 3.0 specification files. To view an example, please follow the links below:
+  TypeScript type generator for OpenAPI 3.0 specification files.
 </p>
 
 ## Example
