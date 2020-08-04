@@ -20,6 +20,16 @@ export const generateTSProperties = (schemaObject: IOpenAPISchemaObject): ITypeS
     }
   }
 
+  if (schemaObject.items) {
+    if (isReferenceObject(schemaObject.items)) {
+      generatedProperties.push(generateTSProperty(schemaObject.items, schemaObject.required, null));
+    } else {
+      generatedProperties.push(
+        generateTSProperty(schemaObject.items, schemaObject.required, schemaObject.title || null)
+      );
+    }
+  }
+
   if (schemaObject.allOf || schemaObject.anyOf || schemaObject.oneOf) {
     (schemaObject.allOf || schemaObject.anyOf || schemaObject.oneOf || []).map(
       (nestedSchemaObject: IOpenAPISchemaObject | IOpenAPIReferenceObject) => {

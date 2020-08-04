@@ -8,7 +8,7 @@ import {IOpenAPISchemaObject} from '../types';
  * @param schemaObject the schema object to check.
  */
 export const getGenerationGoal = (schemaObject: IOpenAPISchemaObject): 'INTERFACE' | 'TYPE' => {
-  if (schemaObject.properties || schemaObject.allOf || schemaObject.anyOf || schemaObject.oneOf) {
+  if (schemaObject.properties || schemaObject.allOf || schemaObject.anyOf || schemaObject.oneOf || schemaObject.items) {
     return 'INTERFACE';
   }
   return 'TYPE';
