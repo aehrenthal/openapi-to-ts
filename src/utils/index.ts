@@ -16,4 +16,5 @@ export * from './toInterfaceName';
 export * from './toJSDocComment';
 export * from './toPascalCase';
 export * from './toTitleCase';
+export * from './toTSIntersection';
 export * from './toTSUnion';

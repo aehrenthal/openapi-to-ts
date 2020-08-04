@@ -26,7 +26,8 @@ export function generateTSProperty(
    * For the type IOpenAPISchemaObject, we can get the name from the JSON key.
    */
   if (isReferenceObject(schemaObject)) {
-    const propertyName = toCamelCase(getSchemaNameFromRef(schemaObject.$ref));
+    /** Fallback to $ref name. */
+    const propertyName = name || toCamelCase(getSchemaNameFromRef(schemaObject.$ref));
     generatedProperty = {
       name: propertyName,
       nullable: false,
