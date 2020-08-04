@@ -36,7 +36,9 @@ export default {
     resolve(),
     commonjs(),
     terser({
-      output: {comments: false},
+      output: {
+        comments: false
+      },
       compress: {
         drop_console: true
       }

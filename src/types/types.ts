@@ -3,7 +3,13 @@
  * openapi-to-ts package accepts to generate
  * TypeScript types based on OpenAPI files.
  */
-export interface IOpenAPIToTSOptions {}
+export interface IOpenAPIToTSOptions {
+  /**
+   * Append the letter `I` as a prefix to all interface names.
+   * @default false
+   */
+  prefixWithI?: boolean;
+}
 
 /**
  * The following OpenAPI 3.0 types are not nearly complete, given that

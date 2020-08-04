@@ -1,10 +1,11 @@
-import {toCapitalizedFirstLetter} from './toCapitalizedFirstLetter';
+import {toPascalCase} from './toPascalCase';
 
 /**
  * Converts a text to a TypeScript interface name.
- * It capitalizes the schema name and adds an `I` to the start.
  * @param text the text to convert.
+ * @param prefixWithI to append the letter `I` as a prefix.
  */
-export const toInterfaceName = (text: string): string => {
-  return `I${toCapitalizedFirstLetter(text)}`;
+export const toInterfaceName = (text: string | undefined, prefixWithI: boolean | undefined): string => {
+  if (text === undefined) return '';
+  return `${prefixWithI ? 'I' : ''}${toPascalCase(text)}`;
 };

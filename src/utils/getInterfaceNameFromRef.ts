@@ -6,7 +6,7 @@ import {toInterfaceName} from './toInterfaceName';
  * For example, `#/components/schemas/NewPet` becomes `INewPet`.
  * @param ref the value of the ref, such as `#/components/schemas/NewPet`.
  */
-export const getInterfaceNameFromRef = (ref: string | undefined): string => {
+export const getInterfaceNameFromRef = (ref: string | undefined, prefixWithI: boolean | undefined): string => {
   if (!ref) return '';
-  return toInterfaceName(getSchemaNameFromRef(ref));
+  return toInterfaceName(getSchemaNameFromRef(ref), prefixWithI);
 };
