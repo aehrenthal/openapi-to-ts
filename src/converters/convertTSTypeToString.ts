@@ -1,5 +1,5 @@
 import {ITypeScriptType} from '../types';
-import {toPascalCase} from '../utils';
+import {mapTypeValueToString, toPascalCase} from '../utils';
 import {toJSDocComment} from '../utils/toJSDocComment';
 
 /**
@@ -15,8 +15,8 @@ export const convertTSTypeToString = (typeObject: ITypeScriptType): string => {
   /** Step 2: Write the export and name of the type. */
   typeString += `export type ${toPascalCase(typeObject.name)} = `;
 
-  /** Step 3: Write the value of the type. */
-  typeString += typeObject.value;
+  /** Step 3: Write the proper value to the type by converting it to a string */
+  typeString += mapTypeValueToString(typeObject.value, typeObject.valueType);
 
   /** Step 4: Write the type closure. */
   typeString += ';';

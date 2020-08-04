@@ -1,26 +1,4 @@
-import {ITypeScriptInterface, ITypeScriptProperty} from '../types';
-
-/**
- * A util method that transforms the value of a property
- * to append an I to exactly the right position.
- * @param property the property who's value needs transformation.
- */
-const appendPrefixToPropertyValue = (property: ITypeScriptProperty): string => {
-  switch (property.valueType) {
-    case 'array':
-    case 'ref':
-    case 'allOf':
-    case 'anyOf':
-    case 'oneOf':
-    case 'enum':
-    case 'string':
-    case 'number':
-    case 'boolean':
-    case 'object':
-    default:
-      return `I${property.value}`;
-  }
-};
+import {ITypeScriptInterface} from '../types';
 
 /**
  * Transforms an array of TypeScript interfaces to have an `I`
@@ -36,8 +14,8 @@ export const transformWithIPrefix = (interfaceObjects: ITypeScriptInterface[]): 
         return {
           ...property,
           /** Only append an I to interfaces, not types. */
-          value: interfaceObjects.find((interfaceObject) => interfaceObject.name === property.value)
-            ? appendPrefixToPropertyValue(property)
+          value: interfaceObjects.find((interfaceObject) => property.value.includes(interfaceObject.name))
+            ? property.value.map((value) => `I${value}`)
             : property.value
         };
       })

@@ -1,8 +1,7 @@
 import {IOpenAPIReferenceObject, IOpenAPISchemaObject, ITypeScriptProperty, SchemaObjectType} from '../types';
-import {getSchemaObjectType} from '../utils';
+import {getSchemaObjectType, mapSchemaToTypeValue} from '../utils';
 import {getSchemaNameFromRef} from '../utils/getSchemaNameFromRef';
 import {isReferenceObject} from '../utils/isReferenceObject';
-import {mapSchemaObjectToTypeScriptType} from '../utils/mapSchemaObjectToTypeScriptType';
 import {toCamelCase} from '../utils/toCamelCase';
 
 /**
@@ -32,7 +31,7 @@ export function generateTSProperty(
       name: propertyName,
       nullable: false,
       optional: !requiredProperties?.includes(propertyName),
-      value: mapSchemaObjectToTypeScriptType(schemaObject),
+      value: mapSchemaToTypeValue(schemaObject),
       valueType: schemaObjectType || 'string'
     };
   } else {
@@ -42,7 +41,7 @@ export function generateTSProperty(
       name: propertyName,
       nullable: schemaObject.nullable || false,
       optional: !name ? false : !requiredProperties?.includes(propertyName),
-      value: mapSchemaObjectToTypeScriptType(schemaObject),
+      value: mapSchemaToTypeValue(schemaObject),
       valueType: schemaObjectType || 'string'
     };
   }

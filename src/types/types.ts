@@ -141,9 +141,9 @@ export interface ITypeScriptProperty {
   optional: boolean;
 
   /**
-   * The value, such as `name: string`.
+   * The value, such as ['string'].
    */
-  value: string;
+  value: string[];
 
   /**
    * The type of value, such as `string`.
@@ -188,9 +188,9 @@ export interface ITypeScriptType {
   name: string;
 
   /**
-   * The value, such as `'apple' | 'bananas'`.
+   * The value, such as ['apple', 'bananas'].
    */
-  value: string;
+  value: string[];
 
   /**
    * The type of value, such as `string`.
