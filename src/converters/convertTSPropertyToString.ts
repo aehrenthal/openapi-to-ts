@@ -6,7 +6,7 @@ import {mapTypeValueToString} from '../utils';
  * @param propertyObject the TypeScript property to convert to a string.
  */
 export const convertTSPropertyToString = (propertyObject: ITypeScriptProperty): string => {
-  let propertyString: string = '';
+  let propertyString = '';
 
   /** Step 1: Add the name to the property. */
   propertyString += propertyObject.name;

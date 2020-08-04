@@ -7,7 +7,7 @@ import {toJSDocComment} from '../utils/toJSDocComment';
  * @param typeObject the TypeScript type to convert to a string.
  */
 export const convertTSTypeToString = (typeObject: ITypeScriptType): string => {
-  let typeString: string = '';
+  let typeString = '';
 
   /** Step 1: Write the JSDoc comment above the type being declared. */
   if (typeObject.comment) typeString += toJSDocComment(typeObject.comment);

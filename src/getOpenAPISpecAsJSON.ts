@@ -4,8 +4,8 @@ import yaml from 'js-yaml';
 import {IOpenAPISpecFile} from './types';
 import {getLocalFile, getRemoteFile} from './utils';
 
-const isYamlFile: RegExp = /\.ya?ml$/;
-const isRemoteFile: RegExp = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+const isYamlFile = /\.ya?ml$/;
+const isRemoteFile = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 
 /**
  * This function loads an OpenAPI 3.0 specification file

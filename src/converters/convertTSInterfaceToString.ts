@@ -8,7 +8,7 @@ import {convertTSPropertiesToString} from './convertTSPropertiesToString';
  * @param interfaceObject the TypeScript interface to convert to a string.
  */
 export const convertTSInterfaceToString = (interfaceObject: ITypeScriptInterface): string => {
-  let interfaceString: string = '';
+  let interfaceString = '';
 
   /** Step 1: Write the JSDoc comment above the interface being declared. */
   if (interfaceObject.comment) interfaceString += toJSDocComment(interfaceObject.comment);

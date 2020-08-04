@@ -20,7 +20,7 @@ export const convertOpenAPIToTS = (specFile: IOpenAPISpecFile, options?: IOpenAP
 
   /** Run all generators to generate all interfaces and types. */
   let interfaceObjects: ITypeScriptInterface[] = [];
-  let typeObjects: ITypeScriptType[] = [];
+  const typeObjects: ITypeScriptType[] = [];
   for (const [key, value] of Object.entries(specFile.components.schemas)) {
     /** Either generate an interface or a type based on the schema and its generation goal. */
     if (getGenerationGoal(value) === 'INTERFACE') {
@@ -34,7 +34,7 @@ export const convertOpenAPIToTS = (specFile: IOpenAPISpecFile, options?: IOpenAP
   if (options?.prefixWithI) interfaceObjects = transformWithIPrefix(interfaceObjects);
 
   /** Run all converters to convert the arrays of interfaces and types to writeable strings. */
-  let types: string = '';
+  let types = '';
 
   /** Add a warning at the top of the output file. */
   types += addWarning();
