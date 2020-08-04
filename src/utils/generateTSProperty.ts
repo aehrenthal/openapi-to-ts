@@ -50,7 +50,7 @@ export function generateTSProperty(
     generatedProperty = {
       name: propertyName,
       nullable: schemaObject.nullable || false,
-      optional: !requiredProperties || !requiredProperties.includes(propertyName),
+      optional: !name ? false : !requiredProperties || !requiredProperties.includes(propertyName),
       type: mapSchemaObjectToTypeScriptType(schemaObject)
     };
   }

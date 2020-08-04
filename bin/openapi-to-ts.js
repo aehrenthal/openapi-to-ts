@@ -15,8 +15,9 @@ program
       /** Fetch the file and convert it to JSON. */
       const specFile = await openAPIToTS.getOpenAPISpecAsJSON(options.input);
       /** Convert the OpenAPI 3.0 Spec to TypeScript types. */
-      console.log(openAPIToTS.convertOpenAPIToTS(specFile, options));
-      openAPIToTS.convertOpenAPIToTS(specFile, options);
+      const types = openAPIToTS.convertOpenAPIToTS(specFile, options);
+      /** Write the file to the file system. */
+      openAPIToTS.writeTypesToLocalFile(options.output, types);
     } catch (error) {
       console.log(chalk.red(error));
       process.exit(1);
