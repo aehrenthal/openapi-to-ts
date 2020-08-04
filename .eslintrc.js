@@ -8,11 +8,6 @@ module.exports = {
   ],
   rules: {
     'prettier/prettier': 'warn',
-    '@typescript-eslint/interface-name-prefix': [
-      'error',
-      {
-        prefixWithI: 'always'
-      }
-    ]
+    '@typescript-eslint/no-explicit-any': 'off'
   }
 };

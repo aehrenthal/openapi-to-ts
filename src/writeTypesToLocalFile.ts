@@ -7,7 +7,7 @@ import path from 'path';
  * @param filePath the path where the file should be written to.
  * @param types the types to write to the specified filePath.
  */
-export const writeTypesToLocalFile = (filePath: string, types: string) => {
+export const writeTypesToLocalFile = (filePath: string, types: string): void => {
   /** Make sure that the directories exist, otherwise create them. */
   const parentDirectories = filePath.split(path.sep);
   parentDirectories.map((_, index) => {

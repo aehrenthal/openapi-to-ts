@@ -23,7 +23,7 @@ export const getRemoteFile = (filePath: string): Promise<string> => {
         /** Encode the response in UTF-8. */
         response.setEncoding('utf-8');
 
-        let data: string = '';
+        let data = '';
 
         /** Executed when a chunk of data has been recieved. */
         response.on('data', (chunk: string) => {

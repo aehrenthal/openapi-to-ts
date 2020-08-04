@@ -7,10 +7,10 @@ import {toTitleCase} from './toTitleCase';
  */
 export const toPascalCase = (text: string | undefined): string => {
   if (text === undefined) return '';
-  let input = text.toString().trim();
+  const input = text.toString().trim();
   if (input === '') return '';
   if (input.length === 1) return input.toLocaleUpperCase();
-  let match = input.match(/[a-zA-Z0-9]+/g);
+  const match = input.match(/[a-zA-Z0-9]+/g);
   if (match) {
     return match.map((m) => toTitleCase(m)).join('');
   }

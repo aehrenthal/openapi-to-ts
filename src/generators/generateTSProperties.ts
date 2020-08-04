@@ -7,7 +7,7 @@ import {generateTSProperty} from './generateTSProperty';
  * @param schemaObject the schema object to convert the properties of.
  */
 export const generateTSProperties = (schemaObject: IOpenAPISchemaObject): ITypeScriptProperty[] => {
-  let generatedProperties: ITypeScriptProperty[] = [];
+  const generatedProperties: ITypeScriptProperty[] = [];
 
   /**
    * Here we handle the various places where OpenAPI 3.0 properties can be defined in.

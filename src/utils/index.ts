@@ -1,3 +1,4 @@
+export * from './addWarning';
 export * from './getGenerationGoal';
 export * from './getLocalFile';
 export * from './getNameFromRef';

@@ -1,7 +1,7 @@
 {
   "name": "openapi-to-ts",
   "description": "Generate TypeScript types from OpenAPI 3.0 specs.",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0",
   "author": "Alexander Ehrenthal",
   "license": "MIT",
   "homepage": "https://github.com/aehrenthal/openapi-to-ts",

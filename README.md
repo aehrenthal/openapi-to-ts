@@ -1,13 +1,21 @@
-# :sunrise: openapi-to-ts
+<p align="center">
+  :sunrise: openapi-to-ts
+</p>
 
-TypeScript type generator for OpenAPI 3.0 specification files. To view an example, please follow the links below:
+<p align="center">
+  TypeScript type generator for OpenAPI 3.0 specification files. To view an example, please follow the links below:
+</p>
+
+<div align="center">
+  [![npm downloads](https://img.shields.io/npm/dm/openapi-to-ts.svg?style=for-the-badge)](https://www.npmjs.com/package/openapi-to-ts)
+  [![npm](https://img.shields.io/npm/dt/openapi-to-ts.svg?style=for-the-badge)](https://www.npmjs.com/package/openapi-to-ts)
+  [![npm](https://img.shields.io/bundlephobia/minzip/openapi-to-ts?style=for-the-badge)](https://bundlephobia.com/result?p=openapi-to-ts)
+</div>
+
+## Example
 
 - Input: [OpenAPI 3.0 YAML file](./examples/example.yaml)
 - Output: [TypeScript interfaces and types](./examples/example.ts)
-
-## :warning: Warning
-
-This package is still in its alpha version. Please only use it with caution.
 
 ## Features
 
@@ -34,13 +42,13 @@ yarn add openapi-to-ts
 To generate TypeScript types from the local file system, run the following command in your console:
 
 ```shell
-openapi-to-ts -i ./example/example.yaml -o ./example/example.ts
+npx openapi-to-ts -i ./example/example.yaml -o ./example/example.ts
 ```
 
 To generate TypeScript types from a remote source, run the following command in your console:
 
 ```shell
-openapi-to-ts -i https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore.yaml -o ./example/example.ts
+npx openapi-to-ts -i https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore.yaml -o ./example/example.ts
 ```
 
 ## CLI Options
@@ -54,13 +62,11 @@ openapi-to-ts -i https://raw.githubusercontent.com/OAI/OpenAPI-Specification/mas
 ## Planned Improvements
 
 - Add an option to run prettier on the generated TS file.
-- Add a warning above the generated TS file that it should not be modified.
 - Allow fetching OpenAPI files from private GitHub repos.
 - Implement additionalProperties.
 - Reduce bundlesize.
 - Allow usage from Node.js and not just the CLI.
 - Cover the codebase with tests.
-- Add an example output file.
 
 ## Bugs
 

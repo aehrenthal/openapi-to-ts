@@ -99,6 +99,7 @@ components:
       items:
         $ref: '#/components/schemas/Pet'
     Error:
+      description: This is the common error model.
       type: object
       required:
         - code

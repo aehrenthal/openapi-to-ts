@@ -6,7 +6,7 @@ import {convertTSPropertyToString} from './convertTSPropertyToString';
  * @param propertyObjects the TypeScript properties to convert to a string.
  */
 export const convertTSPropertiesToString = (propertyObjects: ITypeScriptProperty[]): string => {
-  let propertiesString: string = '';
+  let propertiesString = '';
 
   propertyObjects.map((propertyObject: ITypeScriptProperty) => {
     /** Add two spaces before each property. */
