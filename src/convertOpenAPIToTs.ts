@@ -3,6 +3,7 @@ import {generateTSInterface} from './generators';
 import {generateTSType} from './generators/generateTSType';
 import {transformWithIPrefix} from './transformers';
 import {IOpenAPISpecFile, IOpenAPIToTSOptions, ITypeScriptInterface, ITypeScriptType} from './types';
+import {addWarning} from './utils';
 import {getGenerationGoal} from './utils/getGenerationGoal';
 
 /**
@@ -34,6 +35,10 @@ export const convertOpenAPIToTS = (specFile: IOpenAPISpecFile, options?: IOpenAP
 
   /** Run all converters to convert the arrays of interfaces and types to writeable strings. */
   let types: string = '';
+
+  /** Add a warning at the top of the output file. */
+  types += addWarning();
+
   interfaceObjects.map((interfaceObject) => {
     /** Actually convert the TypeScript interface to a string. */
     types += convertTSInterfaceToString(interfaceObject);

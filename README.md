@@ -50,13 +50,11 @@ npx openapi-to-ts -i https://raw.githubusercontent.com/OAI/OpenAPI-Specification
 ## Planned Improvements
 
 - Add an option to run prettier on the generated TS file.
-- Add a warning above the generated TS file that it should not be modified.
 - Allow fetching OpenAPI files from private GitHub repos.
 - Implement additionalProperties.
 - Reduce bundlesize.
 - Allow usage from Node.js and not just the CLI.
 - Cover the codebase with tests.
-- Add an example output file.
 
 ## Bugs
 
