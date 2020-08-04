@@ -19,7 +19,10 @@ program
       const types = openAPIToTS.convertOpenAPIToTS(specFile, options);
       /** Write the file to the file system. */
       openAPIToTS.writeTypesToLocalFile(options.output, types);
+      /** Inform the user about the success. */
+      console.log(chalk.green(`Successfully created the types at: ${options.output}`));
     } catch (error) {
+      /** Inform the user about any errors thrown. */
       console.log(chalk.red(error));
       process.exit(1);
     }
