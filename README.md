@@ -1,6 +1,18 @@
-# :sunrise: openapi-to-ts
+<p align="center">
+  :sunrise: openapi-to-ts
+</p>
 
-TypeScript type generator for OpenAPI 3.0 specification files. To view an example, please follow the links below:
+<p align="center">
+  TypeScript type generator for OpenAPI 3.0 specification files. To view an example, please follow the links below:
+</p>
+
+<div align="center">
+  [![npm downloads](https://img.shields.io/npm/dm/openapi-to-ts.svg?style=for-the-badge)](https://www.npmjs.com/package/openapi-to-ts)
+  [![npm](https://img.shields.io/npm/dt/openapi-to-ts.svg?style=for-the-badge)](https://www.npmjs.com/package/openapi-to-ts)
+  [![npm](https://img.shields.io/bundlephobia/minzip/openapi-to-ts?style=for-the-badge)](https://bundlephobia.com/result?p=openapi-to-ts)
+</div>
+
+## Example
 
 - Input: [OpenAPI 3.0 YAML file](./examples/example.yaml)
 - Output: [TypeScript interfaces and types](./examples/example.ts)
