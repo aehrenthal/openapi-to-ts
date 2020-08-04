@@ -1,8 +1,8 @@
 import {IOpenAPIReferenceObject, IOpenAPISchemaObject, IOpenAPIToTSOptions, ITypeScriptProperty} from '../types';
-import {getSchemaNameFromRef} from './getSchemaNameFromRef';
-import {isReferenceObject} from './isReferenceObject';
-import {mapSchemaObjectToTypeScriptType} from './mapSchemaObjectToTypeScriptType';
-import {toCamelCase} from './toCamelCase';
+import {getSchemaNameFromRef} from '../utils/getSchemaNameFromRef';
+import {isReferenceObject} from '../utils/isReferenceObject';
+import {mapSchemaObjectToTypeScriptType} from '../utils/mapSchemaObjectToTypeScriptType';
+import {toCamelCase} from '../utils/toCamelCase';
 
 /**
  * Converts a OpenAPI 3.0 property to TypeScript property object.

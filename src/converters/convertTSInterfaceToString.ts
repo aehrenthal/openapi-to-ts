@@ -1,7 +1,7 @@
 import {IOpenAPIToTSOptions, ITypeScriptInterface} from '../types';
+import {toInterfaceName} from '../utils/toInterfaceName';
+import {toJSDocComment} from '../utils/toJSDocComment';
 import {convertTSPropertiesToString} from './convertTSPropertiesToString';
-import {toInterfaceName} from './toInterfaceName';
-import {toJSDocComment} from './toJSDocComment';
 
 /**
  * Converts a TypeScript interface object to a string.

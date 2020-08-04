@@ -1,6 +1,6 @@
 import {IOpenAPIReferenceObject, IOpenAPISchemaObject, IOpenAPIToTSOptions, ITypeScriptProperty} from '../types';
+import {isReferenceObject} from '../utils/isReferenceObject';
 import {generateTSProperty} from './generateTSProperty';
-import {isReferenceObject} from './isReferenceObject';
 
 /**
  * Converts all OpenAPI 3.0 properties to TypeScript property objects.

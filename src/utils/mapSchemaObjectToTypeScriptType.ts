@@ -1,6 +1,8 @@
 import {IOpenAPIReferenceObject, IOpenAPISchemaObject, IOpenAPIToTSOptions, SchemaObjectType} from '../types';
+import {getGenerationGoal} from './getGenerationGoal';
 import {getInterfaceNameFromRef} from './getInterfaceNameFromRef';
 import {getSchemaObjectType} from './getSchemaObjectType';
+import {getTypeNameFromRef} from './getTypeNameFromRef';
 import {isReferenceObject} from './isReferenceObject';
 import {toTSIntersection} from './toTSIntersection';
 import {toTSUnion} from './toTSUnion';
@@ -18,8 +20,12 @@ export const mapSchemaObjectToTypeScriptType = (
   const schemaObjectType: SchemaObjectType | undefined = getSchemaObjectType(schemaObject);
 
   switch (schemaObjectType) {
-    case 'ref':
-      return getInterfaceNameFromRef(schemaObject.$ref, options?.prefixWithI);
+    case 'ref': {
+      if (getGenerationGoal(schemaObject) === 'INTERFACE') {
+        return getInterfaceNameFromRef(schemaObject.$ref, options?.prefixWithI);
+      }
+      return getTypeNameFromRef(schemaObject.$ref);
+    }
     case 'allOf': {
       const allOf = (schemaObject as IOpenAPISchemaObject).allOf;
       return allOf
