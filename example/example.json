@@ -148,6 +148,7 @@
         }
       },
       "Error": {
+        "description": "This is the common error model.",
         "type": "object",
         "required": ["code", "message"],
         "properties": {

@@ -1,14 +1,17 @@
-export interface IPet {
+export interface Pet {
   id: number;
   name: string;
   tag?: string;
 }
 
-export interface IPets {
-  pet?: IPet;
+export interface Pets {
+  pet?: Pet;
 }
 
-export interface IError {
+/**
+ * This is the common error model.
+ */
+export interface Error {
   code: number;
   message: string;
 }

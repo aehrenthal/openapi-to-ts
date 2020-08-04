@@ -5,10 +5,6 @@ TypeScript type generator for OpenAPI 3.0 specification files. To view an exampl
 - Input: [OpenAPI 3.0 YAML file](./examples/example.yaml)
 - Output: [TypeScript interfaces and types](./examples/example.ts)
 
-## :warning: Warning
-
-This package is still in its alpha version. Please only use it with caution.
-
 ## Features
 
 - Generates TypeScript types from OpenAPI 3.0 specification files using Node.js.
@@ -34,13 +30,13 @@ yarn add openapi-to-ts
 To generate TypeScript types from the local file system, run the following command in your console:
 
 ```shell
-openapi-to-ts -i ./example/example.yaml -o ./example/example.ts
+npx openapi-to-ts -i ./example/example.yaml -o ./example/example.ts
 ```
 
 To generate TypeScript types from a remote source, run the following command in your console:
 
 ```shell
-openapi-to-ts -i https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore.yaml -o ./example/example.ts
+npx openapi-to-ts -i https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore.yaml -o ./example/example.ts
 ```
 
 ## CLI Options
