@@ -17,7 +17,7 @@ export const convertTSPropertyToString = (propertyObject: ITypeScriptProperty): 
   propertyString += ': ';
 
   /** Step 4: Add the proper type to the property. */
-  propertyString += propertyObject.type;
+  propertyString += propertyObject.value;
 
   /** Step 5: Conditionally mark the property as nullable. */
   if (propertyObject.nullable) propertyString += ' | null';

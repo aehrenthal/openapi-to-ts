@@ -1,6 +1,7 @@
 import {convertTSInterfaceToString, convertTSTypeToString} from './converters';
 import {generateTSInterface} from './generators';
 import {generateTSType} from './generators/generateTSType';
+import {transformWithIPrefix} from './transformers';
 import {IOpenAPISpecFile, IOpenAPIToTSOptions, ITypeScriptInterface, ITypeScriptType} from './types';
 import {getGenerationGoal} from './utils/getGenerationGoal';
 
@@ -16,29 +17,31 @@ export const convertOpenAPIToTS = (specFile: IOpenAPISpecFile, options?: IOpenAP
     );
   }
 
-  /** Map through all schemas and generate the proper interfaces and types. */
+  /** Run all generators to generate all interfaces and types. */
   let interfaceObjects: ITypeScriptInterface[] = [];
   let typeObjects: ITypeScriptType[] = [];
   for (const [key, value] of Object.entries(specFile.components.schemas)) {
     /** Either generate an interface or a type based on the schema and its generation goal. */
     if (getGenerationGoal(value) === 'INTERFACE') {
-      interfaceObjects.push(generateTSInterface(key, value, options));
+      interfaceObjects.push(generateTSInterface(key, value));
     } else {
-      typeObjects.push(generateTSType(key, value, options));
+      typeObjects.push(generateTSType(key, value));
     }
   }
 
-  /** Convert these interfaces to strings that can be written to an ouput file. */
+  /** Run all optional transfomers to modify the interfaces and types. */
+  if (options?.prefixWithI) interfaceObjects = transformWithIPrefix(interfaceObjects);
+
+  /** Run all converters to convert the arrays of interfaces and types to writeable strings. */
   let types: string = '';
   interfaceObjects.map((interfaceObject) => {
     /** Actually convert the TypeScript interface to a string. */
-    types += convertTSInterfaceToString(interfaceObject, options);
+    types += convertTSInterfaceToString(interfaceObject);
 
     /** Add a linebreak between each interface. */
     types += '\n\n';
   });
 
-  /** Convert these types to strings that can be written to an ouput file. */
   typeObjects.map((typeObject) => {
     /** Actually convert the TypeScript type to a string. */
     types += convertTSTypeToString(typeObject);

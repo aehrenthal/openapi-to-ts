@@ -125,10 +125,30 @@ export interface IOpenAPISpecFile {
  * For example, `name: string;`
  */
 export interface ITypeScriptProperty {
+  /**
+   * The name of the property, such as `name`.
+   */
   name: string;
+
+  /**
+   * If the value is nullable, such as `name: string | null`.
+   */
   nullable: boolean;
+
+  /**
+   * If the value is optional, such as `name?: string;`.
+   */
   optional: boolean;
-  type: string;
+
+  /**
+   * The value, such as `name: string`.
+   */
+  value: string;
+
+  /**
+   * The type of value, such as `string`.
+   */
+  valueType: SchemaObjectType;
 }
 
 /**
@@ -136,8 +156,19 @@ export interface ITypeScriptProperty {
  * For example, `interface IFruit { name: string; }`
  */
 export interface ITypeScriptInterface {
+  /**
+   * An optional JSDoc comment.
+   */
   comment?: string;
+
+  /**
+   * The name of the interface, such as `IFruit`.
+   */
   name: string;
+
+  /**
+   * The properties of the interface, such as `[{ name: string; }]`.
+   */
   properties: ITypeScriptProperty[];
 }
 
@@ -146,7 +177,23 @@ export interface ITypeScriptInterface {
  * For example, `type Fruit = 'apple' | 'bananas';`
  */
 export interface ITypeScriptType {
+  /**
+   * An optional JSDoc comment.
+   */
   comment?: string;
+
+  /**
+   * The name of the type, such as `Fruit`.
+   */
   name: string;
-  type: string;
+
+  /**
+   * The value, such as `'apple' | 'bananas'`.
+   */
+  value: string;
+
+  /**
+   * The type of value, such as `string`.
+   */
+  valueType: SchemaObjectType;
 }

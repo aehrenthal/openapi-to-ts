@@ -1,8 +1,6 @@
-import {IOpenAPIReferenceObject, IOpenAPISchemaObject, IOpenAPIToTSOptions, SchemaObjectType} from '../types';
-import {getGenerationGoal} from './getGenerationGoal';
-import {getInterfaceNameFromRef} from './getInterfaceNameFromRef';
+import {IOpenAPIReferenceObject, IOpenAPISchemaObject, SchemaObjectType} from '../types';
+import {getNameFromRef} from './getNameFromRef';
 import {getSchemaObjectType} from './getSchemaObjectType';
-import {getTypeNameFromRef} from './getTypeNameFromRef';
 import {isReferenceObject} from './isReferenceObject';
 import {toTSIntersection} from './toTSIntersection';
 import {toTSUnion} from './toTSUnion';
@@ -10,37 +8,29 @@ import {toTSUnion} from './toTSUnion';
 /**
  * Maps the SchemaObjectType to the TypeScript type.
  * @param schemaObject the schema object to map.
- * @param options optional options passed to openapi-to-ts.
  */
 export const mapSchemaObjectToTypeScriptType = (
-  schemaObject: IOpenAPISchemaObject | IOpenAPIReferenceObject,
-  options: IOpenAPIToTSOptions | undefined
+  schemaObject: IOpenAPISchemaObject | IOpenAPIReferenceObject
 ): string => {
-  const fallbackType: string = 'any';
   const schemaObjectType: SchemaObjectType | undefined = getSchemaObjectType(schemaObject);
+  const fallbackType: string = 'any';
 
   switch (schemaObjectType) {
-    case 'ref': {
-      if (getGenerationGoal(schemaObject) === 'INTERFACE') {
-        return getInterfaceNameFromRef(schemaObject.$ref, options?.prefixWithI);
-      }
-      return getTypeNameFromRef(schemaObject.$ref);
-    }
+    case 'ref':
+      return getNameFromRef(schemaObject.$ref);
     case 'allOf': {
       const allOf = (schemaObject as IOpenAPISchemaObject).allOf;
-      return allOf
-        ? toTSIntersection(allOf.map((allOf) => `${mapSchemaObjectToTypeScriptType(allOf, options)}`))
-        : fallbackType;
+      return allOf ? toTSIntersection(allOf.map((allOf) => `${mapSchemaObjectToTypeScriptType(allOf)}`)) : fallbackType;
     }
     case 'anyOf': {
       const anyOf = (schemaObject as IOpenAPISchemaObject).anyOf;
       return anyOf
-        ? toTSIntersection(anyOf.map((anyOf) => `Partial<${mapSchemaObjectToTypeScriptType(anyOf, options)}>`))
+        ? toTSIntersection(anyOf.map((anyOf) => `Partial<${mapSchemaObjectToTypeScriptType(anyOf)}>`))
         : fallbackType;
     }
     case 'oneOf': {
       const oneOf = (schemaObject as IOpenAPISchemaObject).oneOf;
-      return oneOf ? toTSUnion(oneOf.map((oneOf) => mapSchemaObjectToTypeScriptType(oneOf, options))) : fallbackType;
+      return oneOf ? toTSUnion(oneOf.map((oneOf) => mapSchemaObjectToTypeScriptType(oneOf))) : fallbackType;
     }
     case 'enum': {
       const enums = (schemaObject as IOpenAPISchemaObject).enum;
@@ -49,9 +39,9 @@ export const mapSchemaObjectToTypeScriptType = (
     case 'array':
       return `Array<${
         isReferenceObject(schemaObject)
-          ? getInterfaceNameFromRef(schemaObject.$ref, options?.prefixWithI)
+          ? getNameFromRef(schemaObject.$ref)
           : schemaObject.items
-          ? mapSchemaObjectToTypeScriptType(schemaObject.items, options)
+          ? mapSchemaObjectToTypeScriptType(schemaObject.items)
           : fallbackType
       }>`;
     case 'string':

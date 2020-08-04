@@ -1,20 +1,18 @@
-import {IOpenAPISchemaObject, IOpenAPIToTSOptions, ITypeScriptType} from '../types';
-import {mapSchemaObjectToTypeScriptType} from '../utils';
+import {IOpenAPISchemaObject, ITypeScriptType, SchemaObjectType} from '../types';
+import {getSchemaObjectType, mapSchemaObjectToTypeScriptType} from '../utils';
 
 /**
  * Generates a TypeScript type object based on a OpenAPI 3.0 schema.
  * @param name the name of the schema.
  * @param schemaObject the schema object to convert.
- * @param options optional options passed to openapi-to-ts.
  */
-export const generateTSType = (
-  name: string,
-  schemaObject: IOpenAPISchemaObject,
-  options: IOpenAPIToTSOptions | undefined
-): ITypeScriptType => {
+export const generateTSType = (name: string, schemaObject: IOpenAPISchemaObject): ITypeScriptType => {
+  const schemaObjectType: SchemaObjectType | undefined = getSchemaObjectType(schemaObject);
+
   return {
     name,
     comment: schemaObject.description,
-    type: mapSchemaObjectToTypeScriptType(schemaObject, options)
+    value: mapSchemaObjectToTypeScriptType(schemaObject),
+    valueType: schemaObjectType || 'string'
   };
 };

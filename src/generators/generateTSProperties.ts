@@ -1,16 +1,12 @@
-import {IOpenAPIReferenceObject, IOpenAPISchemaObject, IOpenAPIToTSOptions, ITypeScriptProperty} from '../types';
+import {IOpenAPIReferenceObject, IOpenAPISchemaObject, ITypeScriptProperty} from '../types';
 import {isReferenceObject} from '../utils/isReferenceObject';
 import {generateTSProperty} from './generateTSProperty';
 
 /**
  * Converts all OpenAPI 3.0 properties to TypeScript property objects.
  * @param schemaObject the schema object to convert the properties of.
- * @param options optional options passed to openapi-to-ts.
  */
-export const generateTSProperties = (
-  schemaObject: IOpenAPISchemaObject,
-  options: IOpenAPIToTSOptions | undefined
-): ITypeScriptProperty[] => {
+export const generateTSProperties = (schemaObject: IOpenAPISchemaObject): ITypeScriptProperty[] => {
   let generatedProperties: ITypeScriptProperty[] = [];
 
   /**
@@ -20,7 +16,7 @@ export const generateTSProperties = (
 
   if (schemaObject.properties) {
     for (const [key, value] of Object.entries(schemaObject.properties)) {
-      generatedProperties.push(generateTSProperty(value, schemaObject.required, key, options));
+      generatedProperties.push(generateTSProperty(value, schemaObject.required, key));
     }
   }
 
@@ -28,10 +24,10 @@ export const generateTSProperties = (
     (schemaObject.allOf || schemaObject.anyOf || schemaObject.oneOf || []).map(
       (nestedSchemaObject: IOpenAPISchemaObject | IOpenAPIReferenceObject) => {
         if (isReferenceObject(nestedSchemaObject)) {
-          generatedProperties.push(generateTSProperty(nestedSchemaObject, schemaObject.required, null, options));
+          generatedProperties.push(generateTSProperty(nestedSchemaObject, schemaObject.required, null));
         } else {
           generatedProperties.push(
-            generateTSProperty(nestedSchemaObject, schemaObject.required, nestedSchemaObject.title || null, options)
+            generateTSProperty(nestedSchemaObject, schemaObject.required, nestedSchemaObject.title || null)
           );
         }
       }

@@ -15,8 +15,8 @@ export const convertTSTypeToString = (typeObject: ITypeScriptType): string => {
   /** Step 2: Write the export and name of the type. */
   typeString += `export type ${toPascalCase(typeObject.name)} = `;
 
-  /** Step 3: Write the type of the type. */
-  typeString += typeObject.type;
+  /** Step 3: Write the value of the type. */
+  typeString += typeObject.value;
 
   /** Step 4: Write the type closure. */
   typeString += ';';
