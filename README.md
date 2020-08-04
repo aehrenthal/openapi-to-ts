@@ -1,6 +1,6 @@
-<p align="center">
+<h1 align="center">
   :sunrise: openapi-to-ts
-</p>
+</h1>
 
 <p align="center">
   TypeScript type generator for OpenAPI 3.0 specification files. To view an example, please follow the links below:
