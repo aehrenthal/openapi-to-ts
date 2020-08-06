@@ -18,7 +18,7 @@ program
   .action(async (options) => {
     try {
       /** Fetch the file and convert it to JSON. */
-      const specFile = await openAPIToTS.getOpenAPISpecAsJSON(options.input);
+      const specFile = await openAPIToTS.getOpenAPISpecAsJSON(options.input, options.githubToken);
       /** Convert the OpenAPI 3.0 Spec to TypeScript types. */
       const types = openAPIToTS.convertOpenAPIToTS(specFile, options);
       /** Write the file to the file system. */
