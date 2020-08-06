@@ -1,10 +1,16 @@
 <h1 align="center">
-  :sunrise: openapi-to-ts
+  🌅 openapi-to-ts
 </h1>
 
 <p align="center">
   TypeScript type generator for OpenAPI 3.0 specification files.
 </p>
+
+<div align="center">
+  [![npm downloads](https://img.shields.io/npm/dm/openapi-to-ts.svg?style=for-the-badge)](https://www.npmjs.com/package/openapi-to-ts)
+  [![npm](https://img.shields.io/npm/dt/openapi-to-ts.svg?style=for-the-badge)](https://www.npmjs.com/package/openapi-to-ts)
+  [![npm](https://img.shields.io/bundlephobia/minzip/openapi-to-ts?style=for-the-badge)](https://bundlephobia.com/result?p=openapi-to-ts)
+</div>
 
 ## Example
 
@@ -22,13 +28,13 @@
 ## Install
 
 ```shell
-npm install openapi-to-ts
+npm install openapi-to-ts --save-dev
 ```
 
 or
 
 ```shell
-yarn add openapi-to-ts
+yarn add openapi-to-ts --dev
 ```
 
 ## CLI Usage
@@ -58,7 +64,6 @@ npx openapi-to-ts -i https://raw.githubusercontent.com/OAI/OpenAPI-Specification
 - Add an option to run prettier on the generated TS file.
 - Allow fetching OpenAPI files from private GitHub repos.
 - Implement additionalProperties.
-- Reduce bundlesize.
 - Allow usage from Node.js and not just the CLI.
 - Cover the codebase with tests.
 
