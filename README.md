@@ -9,9 +9,7 @@
 <div align="center">
 
 [![npm downloads](https://img.shields.io/npm/dm/openapi-to-ts.svg?style=for-the-badge)](https://www.npmjs.com/package/openapi-to-ts)
-
 [![npm](https://img.shields.io/npm/dt/openapi-to-ts.svg?style=for-the-badge)](https://www.npmjs.com/package/openapi-to-ts)
-
 [![npm](https://img.shields.io/bundlephobia/minzip/openapi-to-ts?style=for-the-badge)](https://bundlephobia.com/result?p=openapi-to-ts)
 
 </div>
