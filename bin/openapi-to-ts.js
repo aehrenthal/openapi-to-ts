@@ -10,6 +10,10 @@ program
   .description(packageJson.description)
   .requiredOption('-i, --input <input>', 'Convert specified OpenAPI 3.0 specification file to TypeScript types.')
   .requiredOption('-o, --output <output>', 'Specify the output file the TypeScript types should be written to.')
+  .option(
+    '--githubToken <token>',
+    'Attach a GitHub personal access token to the request if fetching the input remotely.'
+  )
   .option('--prefixWithI', 'Append the letter `I` as a prefix to all interface names.')
   .action(async (options) => {
     try {

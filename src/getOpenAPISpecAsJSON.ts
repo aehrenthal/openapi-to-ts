@@ -12,8 +12,9 @@ const isRemoteFile = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@
  * and converts it into JSON. It can either be on a remote
  * server or on the local file system of the user.
  * @param filePath the path to the OpenAPI 3.0 specification file to convert.
+ * @param githubToken the github token that should be attached to the request.
  */
-export const getOpenAPISpecAsJSON = async (filePath: string): Promise<IOpenAPISpecFile> => {
+export const getOpenAPISpecAsJSON = async (filePath: string, githubToken?: string): Promise<IOpenAPISpecFile> => {
   console.log(chalk.blue(`Loading OpenAPI 3.0 specification file from: ${filePath}`));
 
   try {
@@ -21,7 +22,7 @@ export const getOpenAPISpecAsJSON = async (filePath: string): Promise<IOpenAPISp
     let rawSpecFile: string | undefined = undefined;
 
     if (isRemoteFile.test(filePath)) {
-      rawSpecFile = await getRemoteFile(filePath);
+      rawSpecFile = await getRemoteFile(filePath, githubToken);
     } else {
       rawSpecFile = await getLocalFile(filePath);
     }
