@@ -33,9 +33,9 @@ export const getOpenAPISpecAsJSON = async (filePath: string, githubToken?: strin
 
     /** Check if the OpenAPI 3.0 spec is a YAML or JSON file. Then we parse it accordingly. */
     if (isYamlFile.test(filePath)) {
-      return yaml.safeLoad(rawSpecFile) as IOpenAPISpecFile;
+      return yaml.load(rawSpecFile);
     } else {
-      return JSON.parse(rawSpecFile) as IOpenAPISpecFile;
+      return JSON.parse(rawSpecFile);
     }
   } catch (error) {
     throw new Error(error);

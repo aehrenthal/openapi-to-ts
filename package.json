@@ -36,7 +36,7 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "commander": "^6.0.0",
-    "js-yaml": "^3.14.0"
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
@@ -53,6 +53,6 @@
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript2": "^0.27.1",
     "rollup": "^2.23.0",
-    "typescript": "^3.9.7"
+    "typescript": "^4.2.4"
   }
 }
