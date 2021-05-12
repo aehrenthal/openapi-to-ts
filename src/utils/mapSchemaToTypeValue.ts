@@ -21,7 +21,7 @@ export const mapSchemaToTypeValue = (schemaObject: IOpenAPISchemaObject | IOpenA
     }
     case 'anyOf': {
       const anyOf = (schemaObject as IOpenAPISchemaObject).anyOf;
-      return anyOf ? anyOf.map((allOf) => `${mapSchemaToTypeValue(allOf)}`) : fallbackType;
+      return anyOf ? anyOf.map((anyOf) => `${mapSchemaToTypeValue(anyOf)}`) : fallbackType;
     }
     case 'oneOf': {
       const oneOf = (schemaObject as IOpenAPISchemaObject).oneOf;

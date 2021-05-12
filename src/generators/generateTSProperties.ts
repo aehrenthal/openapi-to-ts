@@ -35,9 +35,15 @@ export const generateTSProperties = (schemaObject: IOpenAPISchemaObject): ITypeS
       (nestedSchemaObject: IOpenAPISchemaObject | IOpenAPIReferenceObject) => {
         if (isReferenceObject(nestedSchemaObject)) {
           generatedProperties.push(generateTSProperty(nestedSchemaObject, schemaObject.required, null));
+        } else if (nestedSchemaObject.properties) {
+          generatedProperties.push(...generateTSProperties(nestedSchemaObject));
         } else {
           generatedProperties.push(
-            generateTSProperty(nestedSchemaObject, schemaObject.required, nestedSchemaObject.title || null)
+            generateTSProperty(
+              nestedSchemaObject,
+              schemaObject.required,
+              isReferenceObject(nestedSchemaObject) ? null : nestedSchemaObject.title || null
+            )
           );
         }
       }
