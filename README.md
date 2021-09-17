@@ -16,8 +16,10 @@
 
 ## Example
 
-- Input: [OpenAPI 3.0 YAML file](./examples/example.yaml)
-- Output: [TypeScript interfaces and types](./examples/example.ts)
+- Simple Input: [Petstore OpenAPI 3.0 YAML file](./examples/example-simple.yaml)
+- Simple Output: [TypeScript interfaces and types](./examples/example-simple.ts)
+- Advanced Input: [Stripe OpenAPI 3.0 YAML file](./examples/example-advanced.yaml)
+- Advanced Output: [TypeScript interfaces and types](./examples/example-advanced.ts)
 
 ## Features
 
@@ -44,13 +46,13 @@ yarn add openapi-to-ts --dev
 To generate TypeScript types from the local file system, run the following command in your console:
 
 ```shell
-npx openapi-to-ts -i ./examples/example.yaml -o ./examples/example.ts
+npx openapi-to-ts -i ./examples/example-simple.yaml -o ./examples/example-simple.ts
 ```
 
 To generate TypeScript types from a remote source, run the following command in your console:
 
 ```shell
-npx openapi-to-ts -i https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore.yaml -o ./examples/example.ts
+npx openapi-to-ts -i https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore.yaml -o ./examples/example-simple.ts
 ```
 
 ## CLI Options
